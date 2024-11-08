@@ -1,0 +1,28 @@
+﻿<Window x:Class="Prodazha_avto.EditCarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Prodazha_avto"
+        mc:Ignorable="d"
+        Title="EditCarWindow" Height="450" Width="800">
+    <Grid Margin="0,0,10,-34">
+        <Label Content="Цвет" FontSize="20" HorizontalAlignment="Left" Margin="20,114,0,285"/>
+        <TextBox x:Name="ColorTextBox" Height="25" HorizontalAlignment="Left" Margin="150,114,0,281" Width="200"/>
+
+        <Label Content="Цена" FontSize="20" HorizontalAlignment="Left" Margin="20,160,0,239"/>
+        <TextBox x:Name="PriceTextBox" Height="25" HorizontalAlignment="Left" Margin="150,165,0,244" Width="200"/>
+
+        <Label Content="Количество" FontSize="20" HorizontalAlignment="Left" Margin="14,202,0,189"/>
+        <TextBox x:Name="QuantityTextBox" Height="25" HorizontalAlignment="Left" Margin="150,204,0,197" Width="200"/>
+
+        <Button Content="Сохранить изменения" Height="30" Width="150" HorizontalAlignment="Left"
+                Margin="150,140,0,0" Click="SaveButton_Click"/>
+
+        <Button Content="Отмена" Height ="30" Width ="150"
+                HorizontalAlignment ="Left"
+                Margin ="400,204,0,200"
+                Click ="CancelButton_Click"/>
+        <Label Content="Изменение данных машины " FontSize="25" FontWeight="Black" HorizontalAlignment="Left" Margin="177,32,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

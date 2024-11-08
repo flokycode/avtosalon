@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7245f6681b0b418b8598e72eca8002a5" Name="Diagram1">
+        <EntityTypeShape EntityType="user270_dbModel.CarBrand" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user270_dbModel.CarModel" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="user270_dbModel.CarRole" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user270_dbModel.Cars" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="user270_dbModel.CarTypes" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="user270_dbModel.CarUser" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="user270_dbModel.Client" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user270_dbModel.Sales" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="user270_dbModel.FK_CarModel_CarBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="user270_dbModel.FK_Cars_CarModel" ManuallyRouted="false" />
+        <AssociationConnector Association="user270_dbModel.FK_CarUser_CarRole" ManuallyRouted="false" />
+        <AssociationConnector Association="user270_dbModel.FK__Cars__id_type__6D181FEC" ManuallyRouted="false" />
+        <AssociationConnector Association="user270_dbModel.FK__Sales__id_car__75AD65ED" ManuallyRouted="false" />
+        <AssociationConnector Association="user270_dbModel.FK_Sales_CarUser" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="user270_dbModel.CarImg" Width="1.5" PointX="8.375" PointY="4.875" />
+        <AssociationConnector Association="user270_dbModel.FK_Cars_CarImg" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,49 @@
+﻿<Window x:Class="Prodazha_avto.Pokupatel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Prodazha_avto"
+        mc:Ignorable="d"
+        Title="Pokupatel" Height="650" Width="800">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Для кнопок -->
+            <RowDefinition Height="*"/>
+            <!-- Для DataGrid -->
+            <RowDefinition Height="Auto"/>
+            <!-- Для изображения и кнопки загрузки -->
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10,10,10,249">
+            <TextBlock Text="Доступные автомобили" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" TextAlignment="Center"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <DataGrid Name="CarsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="CarsDataGrid_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Фото" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding ImagePath}" Width="80" Height="60" Stretch="UniformToFill"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Марка" Binding="{Binding Brand}" Width="150"/>
+                        <DataGridTextColumn Header="Модель" Binding="{Binding ModelName}" Width="150"/>
+                        <DataGridTextColumn Header="Цвет" Binding="{Binding Color}" Width="100"/>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="100"/>
+                        <DataGridTextColumn Header="Описание" Binding="{Binding description}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+            <TextBlock x:Name="CarDetailsTextBlock" FontSize="16" Margin="0,20,0,10"/>
+            <Button Content="Оформить покупку" Click="PurchaseButton_Click" Margin="0,10,0,-90" Height="25" Width="250"/>
+            <TextBox x:Name="ReviewTextBox" Height="27" Width="248" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,100,0,0"/>
+            <Label Content="Отзыв:" Height="26" Width="51" Margin="0,-93,190,0" />
+        </StackPanel>
+    </Grid>
+    </ScrollViewer>
+</Window>

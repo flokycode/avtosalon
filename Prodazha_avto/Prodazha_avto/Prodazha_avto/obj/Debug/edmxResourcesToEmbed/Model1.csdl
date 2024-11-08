@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="user270_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CarBrand">
+    <Key>
+      <PropertyRef Name="id_branda" />
+    </Key>
+    <Property Name="id_branda" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CarModel" Relationship="Self.FK_CarModel_CarBrand" FromRole="CarBrand" ToRole="CarModel" />
+  </EntityType>
+  <EntityType Name="CarModel">
+    <Key>
+      <PropertyRef Name="id_model" />
+    </Key>
+    <Property Name="id_model" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="brand" Type="Int32" />
+    <NavigationProperty Name="CarBrand" Relationship="Self.FK_CarModel_CarBrand" FromRole="CarModel" ToRole="CarBrand" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_CarModel" FromRole="CarModel" ToRole="Cars" />
+  </EntityType>
+  <EntityType Name="CarRole">
+    <Key>
+      <PropertyRef Name="id_role" />
+    </Key>
+    <Property Name="id_role" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CarUser" Relationship="Self.FK_CarUser_CarRole" FromRole="CarRole" ToRole="CarUser" />
+  </EntityType>
+  <EntityType Name="Cars">
+    <Key>
+      <PropertyRef Name="id_car" />
+    </Key>
+    <Property Name="id_car" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_typeofcuzov" Type="Int32" />
+    <Property Name="model" Type="Int32" Nullable="false" />
+    <Property Name="color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="image" Type="Int32" />
+    <NavigationProperty Name="CarModel" Relationship="Self.FK_Cars_CarModel" FromRole="Cars" ToRole="CarModel" />
+    <NavigationProperty Name="CarTypes" Relationship="Self.FK__Cars__id_type__6D181FEC" FromRole="Cars" ToRole="CarTypes" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__id_car__75AD65ED" FromRole="Cars" ToRole="Sales" />
+    <NavigationProperty Name="CarImg" Relationship="user270_dbModel.FK_Cars_CarImg" FromRole="Cars" ToRole="CarImg" />
+  </EntityType>
+  <EntityType Name="CarTypes">
+    <Key>
+      <PropertyRef Name="id_type" />
+    </Key>
+    <Property Name="id_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK__Cars__id_type__6D181FEC" FromRole="CarTypes" ToRole="Cars" />
+  </EntityType>
+  <EntityType Name="CarUser">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="middle_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="passport_num" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="addresss" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="Int32" />
+    <NavigationProperty Name="CarRole" Relationship="Self.FK_CarUser_CarRole" FromRole="CarUser" ToRole="CarRole" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_CarUser" FromRole="CarUser" ToRole="Sales" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="imya" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="familiya" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="adress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Sales">
+    <Key>
+      <PropertyRef Name="id_sale" />
+    </Key>
+    <Property Name="id_sale" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_car" Type="Int32" />
+    <Property Name="id_user" Type="Int32" />
+    <Property Name="sale_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="sale_price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="reviews" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK__Sales__id_car__75AD65ED" FromRole="Sales" ToRole="Cars" />
+    <NavigationProperty Name="CarUser" Relationship="Self.FK_Sales_CarUser" FromRole="Sales" ToRole="CarUser" />
+  </EntityType>
+  <Association Name="FK_CarModel_CarBrand">
+    <End Role="CarBrand" Type="Self.CarBrand" Multiplicity="0..1" />
+    <End Role="CarModel" Type="Self.CarModel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarBrand">
+        <PropertyRef Name="id_branda" />
+      </Principal>
+      <Dependent Role="CarModel">
+        <PropertyRef Name="brand" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cars_CarModel">
+    <End Role="CarModel" Type="Self.CarModel" Multiplicity="1" />
+    <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarModel">
+        <PropertyRef Name="id_model" />
+      </Principal>
+      <Dependent Role="Cars">
+        <PropertyRef Name="model" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarUser_CarRole">
+    <End Role="CarRole" Type="Self.CarRole" Multiplicity="0..1" />
+    <End Role="CarUser" Type="Self.CarUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarRole">
+        <PropertyRef Name="id_role" />
+      </Principal>
+      <Dependent Role="CarUser">
+        <PropertyRef Name="role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cars__id_type__6D181FEC">
+    <End Role="CarTypes" Type="Self.CarTypes" Multiplicity="0..1" />
+    <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarTypes">
+        <PropertyRef Name="id_type" />
+      </Principal>
+      <Dependent Role="Cars">
+        <PropertyRef Name="id_typeofcuzov" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sales__id_car__75AD65ED">
+    <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="id_car" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="id_car" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_CarUser">
+    <End Role="CarUser" Type="Self.CarUser" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarUser">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="user270_dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CarBrand" EntityType="Self.CarBrand" />
+    <EntitySet Name="CarModel" EntityType="Self.CarModel" />
+    <EntitySet Name="CarRole" EntityType="Self.CarRole" />
+    <EntitySet Name="Cars" EntityType="Self.Cars" />
+    <EntitySet Name="CarTypes" EntityType="Self.CarTypes" />
+    <EntitySet Name="CarUser" EntityType="Self.CarUser" />
+    <EntitySet Name="Client" EntityType="Self.Client" />
+    <EntitySet Name="Sales" EntityType="Self.Sales" />
+    <AssociationSet Name="FK_CarModel_CarBrand" Association="Self.FK_CarModel_CarBrand">
+      <End Role="CarBrand" EntitySet="CarBrand" />
+      <End Role="CarModel" EntitySet="CarModel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cars_CarModel" Association="Self.FK_Cars_CarModel">
+      <End Role="CarModel" EntitySet="CarModel" />
+      <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CarUser_CarRole" Association="Self.FK_CarUser_CarRole">
+      <End Role="CarRole" EntitySet="CarRole" />
+      <End Role="CarUser" EntitySet="CarUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cars__id_type__6D181FEC" Association="Self.FK__Cars__id_type__6D181FEC">
+      <End Role="CarTypes" EntitySet="CarTypes" />
+      <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sales__id_car__75AD65ED" Association="Self.FK__Sales__id_car__75AD65ED">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_CarUser" Association="Self.FK_Sales_CarUser">
+      <End Role="CarUser" EntitySet="CarUser" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <EntitySet Name="CarImg" EntityType="user270_dbModel.CarImg" />
+    <AssociationSet Name="FK_Cars_CarImg" Association="user270_dbModel.FK_Cars_CarImg">
+      <End Role="CarImg" EntitySet="CarImg" />
+      <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CarImg">
+    <Key>
+      <PropertyRef Name="id_img" />
+    </Key>
+    <Property Name="id_img" Type="Int32" Nullable="false" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cars" Relationship="user270_dbModel.FK_Cars_CarImg" FromRole="CarImg" ToRole="Cars" />
+  </EntityType>
+  <Association Name="FK_Cars_CarImg">
+    <End Type="user270_dbModel.CarImg" Role="CarImg" Multiplicity="0..1" />
+    <End Type="user270_dbModel.Cars" Role="Cars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarImg">
+        <PropertyRef Name="id_img" />
+      </Principal>
+      <Dependent Role="Cars">
+        <PropertyRef Name="image" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
